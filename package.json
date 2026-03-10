@@ -1,5 +1,5 @@
 {
-  "name": "@orderly.network/template",
+  "name": "@orderly.network/package-template",
   "version": "0.0.1",
   "description": "Template for creating a new Orderly.network package",
   "license": "MIT",
