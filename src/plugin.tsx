@@ -1,7 +1,7 @@
-import { createInterceptor } from "@orderly.network/ui"
-import { OrderlySDK } from "@orderly.network/ui"
-import { OrderBookListWrapper } from "./components/orderbook"
-import type { OrderBookShimmerPluginOptions } from "./components/orderbook"
+import { createInterceptor } from "@orderly.network/ui";
+import { OrderlySDK } from "@orderly.network/ui";
+import { OrderBookListWrapper } from "./components/orderbook";
+import type { OrderBookShimmerPluginOptions } from "./components/orderbook";
 
 const DEFAULT_PLUGIN_OPTIONS: OrderBookShimmerPluginOptions = {
   animationHighlightColor: "rgba(255, 200, 100, 0.25)",
@@ -44,3 +44,4 @@ export function registerPlugin(
     });
   };
 }
+

@@ -59,7 +59,7 @@ Compatibility: the plugin registers with `orderlyVersion: ">=3.0.0"`.
 
 `options` is optional: pass nothing to use defaults, or pass a partial object to override only the colors.
 
-Default values (from `src/index.tsx`):
+### Options
 
 - `animationHighlightColor`
   - Default: `rgba(255, 200, 100, 0.25)`

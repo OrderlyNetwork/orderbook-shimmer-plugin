@@ -25,6 +25,7 @@
     "@orderly.network/hooks": "3.0.0-beta.0",
     "@orderly.network/i18n": "3.0.0-beta.0",
     "@orderly.network/plugin-core": "3.0.0-beta.0",
+    "@orderly.network/trading": "3.0.0-beta.0",
     "@orderly.network/types": "3.0.0-beta.0",
     "@orderly.network/ui": "3.0.0-beta.0",
     "@orderly.network/utils": "3.0.0-beta.0",
@@ -34,8 +35,8 @@
   "devDependencies": {
     "@orderly.network/core": "3.0.0-beta.0",
     "@orderly.network/react-app": "3.0.0-beta.0",
-    "@orderly.network/ts-config": "^0.0.2",
     "@orderly.network/trading": "3.0.0-beta.0",
+    "@orderly.network/ts-config": "^0.0.2",
     "@orderly.network/ui": "3.0.0-beta.0",
     "@storybook/react": "^10.3.0",
     "@storybook/react-vite": "^10.3.0",
@@ -47,6 +48,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^10.3.0",
+    "tailwindcss-animate": "^1.0.7",
     "tsup": "^8.5.1",
     "typescript": "^5.1.6",
     "vite-plugin-node-polyfills": "^0.25.0"

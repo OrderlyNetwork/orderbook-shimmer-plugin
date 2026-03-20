@@ -4,13 +4,22 @@ export default defineConfig((options) => ({
   entry: ["src/index.ts"],
   format: ["esm", "cjs"],
   target: "es2020",
-  // minify: !options.watch,
-  splitting: true,
-  sourcemap: true,
+  // Library packages: keep output smaller by avoiding sourcemaps and bundling
+  // large peer runtime deps.
+  minify: !options.watch,
+  splitting: false,
+  sourcemap: false,
   treeshake: true,
   clean: !options.watch,
   dts: true,
-  external: ["react", "react-dom"],
+  // Externalize runtime deps so tsup doesn't bundle large Orderly packages.
+  external: [
+    "react",
+    "react-dom",
+    "@orderly.network/ui",
+    "@orderly.network/trading",
+    "@orderly.network/utils",
+  ],
   esbuildOptions(esOptions, context) {
     if (!options.watch) {
       esOptions.drop = ["console", "debugger"];
