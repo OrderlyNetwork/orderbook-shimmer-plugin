@@ -1,116 +1,86 @@
-# @orderly.network/template
+# OrderBook Shimmer Plugin
 
-Template project for quickly creating new `@orderly.network/*` React component packages. It comes with:
+This package adds a desktop orderbook "shimmer/flash" effect to Orderly by intercepting the rendered orderbook lists and applying CSS animations when visible values change.
 
-- **Basic example component**: exports a `hello` component built with `@orderly.network/ui`
-- **i18n integration**: external locale loading powered by `@orderly.network/i18n`
-- **Style build pipeline**: uses `tailwindcss` to build `dist/styles.css`
+## What it intercepts
 
-## Installation
+The plugin registers two interceptors:
 
-In your target project (or when consuming this package from a monorepo):
+- `OrderBook.Desktop.Asks`
+- `OrderBook.Desktop.Bids`
+
+## Install
+
+In your target project (or when consuming from a monorepo):
 
 ```bash
-pnpm add @orderly.network/template
+pnpm add @orderly.network/orderbook-shimmer-plugin
 ```
 
-This template declares the following peerDependencies (must be provided by the consumer app):
+## Developer integration (recommended)
 
-- `@orderly.network/hooks >= 2.10.1`
-- `@orderly.network/i18n >= 2.10.1`
-- `@orderly.network/ui >= 2.10.1`
-- `react >= 18`
-- `react-dom >= 18`
+### 1) Import styles
 
-## Exports
+The flash/stripe styles are built into `dist/styles.css`. Import them once in your app (e.g. in your root layout).
 
-The entry file `src/index.ts` currently exports:
-
-- **Example component**
-  - `hello`: a simple React component that renders a `Box` from `@orderly.network/ui`
-- **i18n utilities**
-  - `TemplateLocaleProvider`: an external locale provider that lazily loads package-level locale resources
-  - `TemplateLocales`: the default locale object (for example `Common.ok`)
-
-### Using the example component
-
-```tsx
-import { hello } from "@orderly.network/template";
-
-export function App() {
-  return <>{hello()}</>;
-}
+```ts
+import "@orderly.network/orderbook-shimmer-plugin/dist/styles.css";
 ```
 
-### Using the i18n provider
+### 2) Register the plugin via `OrderlyPluginProvider`
 
-`TemplateLocaleProvider` is implemented on top of `ExternalLocaleProvider` from `@orderly.network/i18n`:
+Use `registerPlugin()` and pass it in the `plugins` array.
 
 ```tsx
-import { TemplateLocaleProvider } from "@orderly.network/template";
+import { OrderlyPluginProvider } from "@orderly.network/ui";
+import { OrderBookWidget } from "@orderly.network/trading";
+import { registerPlugin } from "@orderly.network/orderbook-shimmer-plugin";
 
 export function Root() {
-  return <TemplateLocaleProvider>{/* your app here */}</TemplateLocaleProvider>;
+  return (
+    <OrderlyPluginProvider
+      plugins={[
+        registerPlugin({
+          animationHighlightColor: "rgba(255, 200, 100, 0.25)",
+          stripedRowBackgroundColor: "rgb(var(--oui-color-line) / 0.03)",
+        }),
+      ]}
+    >
+      <OrderBookWidget symbol="PERP_BTC_USDC" />
+    </OrderlyPluginProvider>
+  );
 }
 ```
 
-Under the hood it will:
+## Plugin options
 
-- Call `preloadDefaultResource(TemplateLocales)` to preload default messages
-- Dynamically `import ./locales/${lang}.json` based on the current `LocaleCode`
+`registerPlugin(options?: Partial<OrderBookShimmerPluginOptions>)`
 
-You can add or extend locale JSON files under `src/i18n/locales` and keep them compatible with the `TemplateLocales` type.
+Compatibility: the plugin registers with `orderlyVersion: ">=3.0.0"`.
 
-## Styles & build
+`options` is optional: pass nothing to use defaults, or pass a partial object to override only the colors.
 
-This template ships with a minimal `tailwindcss` setup:
+Default values (from `src/index.tsx`):
 
-- `src/tailwind.css` contains
-  - `@tailwind components;`
-  - `@tailwind utilities;`
+- `animationHighlightColor`
+  - Default: `rgba(255, 200, 100, 0.25)`
+  - Used as the CSS animation "from" color.
+- `stripedRowBackgroundColor`
+  - Default: `rgb(var(--oui-color-line) / 0.03)`
+  - Used as:
+    - the even-row base background color
+    - the animation "to" color for even rows
 
-Build commands:
+### Type exports
 
-- **Build components and styles**
+This package exports the `OrderBookShimmerPluginOptions` type from `src/components/orderbook.tsx`.
 
-```bash
-pnpm build
+```ts
+import type { OrderBookShimmerPluginOptions } from "@orderly.network/orderbook-shimmer-plugin";
 ```
 
-This is equivalent to:
+## Behavior notes
 
-- Using `tsup` to build `dist/index.js`, `dist/index.mjs`, and `dist/index.d.ts`
-- Using `tailwindcss` to build `dist/styles.css`
-
-## How to use this as a new package template
-
-When creating a new Orderly frontend package, you can:
-
-1. **Copy this directory** to a new package folder, then update the following fields in `package.json`:
-   - `name`
-   - `version`
-   - `description`
-2. **Replace the example component**
-   - Add/modify your actual components under `src/components`
-   - Export them from `src/index.ts`
-3. **Adjust i18n as needed**
-   - Update `TemplateLocales` and its type in `src/i18n/module.ts`
-   - Add matching locale JSON files under `src/i18n/locales`
-4. **Extend styles as needed**
-   - Update `src/tailwind.css` with your own Tailwind layers or utilities
-   - Or integrate other style solutions and wire them into the build step
-
-## Publishing
-
-`package.json` is configured with:
-
-- `prepublishOnly`: automatically runs `pnpm build` before `pnpm publish`
-- `files`: only publishes `dist`, `package.json`, and `README.md`
-
-After you finish implementing and testing your new package, you can run (from the workspace root or the package directory):
-
-```bash
-pnpm publish --filter @orderly.network/your-package-name
-```
-
-Using `@orderly.network/template` as a starting point helps you quickly bootstrap new Orderly packages with a consistent structure, built-in i18n wiring, and a Tailwind-based style build.
+- The wrapper diffs rows using display-precision rounding (so flashes match what the UI shows).
+- Flash animations do not run on the initial mount (or first precision change after mount).
+- Only the desktop orderbook asks/bids are affected; other views/components are not intercepted.
