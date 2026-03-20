@@ -14,7 +14,7 @@ const meta = {
   title: "OrderBook Shimmer Plugin",
   component: TradingPage,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   args: {
     symbol: "PERP_BTC_USDC",
@@ -63,8 +63,8 @@ export const Default: Story = {
         ]}
       >
         <div className="oui-h-[350px] oui-m-3 oui-flex oui-items-start oui-justify-center">
-          <Box className="oui-w-1/3 oui-bg-base-9" r="2xl" py={3}>
-            <OrderBookWidget symbol={arg.symbol} />
+          <Box className="oui-w-[350px] oui-bg-base-9" r="2xl" py={3}>
+            <OrderBookWidget symbol={arg.symbol} height={350} />
           </Box>
         </div>
       </OrderlyPluginProvider>
