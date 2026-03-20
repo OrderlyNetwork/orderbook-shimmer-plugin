@@ -62,7 +62,7 @@ export const Default: Story = {
           }),
         ]}
       >
-        <div className="oui-h-[400px] oui-m-3 oui-flex oui-items-start oui-justify-center">
+        <div className="oui-h-[350px] oui-m-3 oui-flex oui-items-start oui-justify-center">
           <Box className="oui-w-1/3 oui-bg-base-9" r="2xl" py={3}>
             <OrderBookWidget symbol={arg.symbol} />
           </Box>
