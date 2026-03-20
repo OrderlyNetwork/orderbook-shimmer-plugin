@@ -27,27 +27,26 @@ The flash/stripe styles are built into `dist/styles.css`. Import them once in yo
 import "@orderly.network/orderbook-shimmer-plugin/dist/styles.css";
 ```
 
-### 2) Register the plugin via `OrderlyPluginProvider`
+### 2) Register the plugin via `OrderlyAppProvider`
 
 Use `registerPlugin()` and pass it in the `plugins` array.
 
 ```tsx
-import { OrderlyPluginProvider } from "@orderly.network/ui";
-import { OrderBookWidget } from "@orderly.network/trading";
 import { registerPlugin } from "@orderly.network/orderbook-shimmer-plugin";
 
 export function Root() {
   return (
-    <OrderlyPluginProvider
+    <OrderlyAppProvider
       plugins={[
         registerPlugin({
           animationHighlightColor: "rgba(255, 200, 100, 0.25)",
           stripedRowBackgroundColor: "rgb(var(--oui-color-line) / 0.03)",
         }),
+        //... other plugins
       ]}
     >
-      <OrderBookWidget symbol="PERP_BTC_USDC" />
-    </OrderlyPluginProvider>
+      {/* Your app content */}
+    </OrderlyAppProvider>
   );
 }
 ```
