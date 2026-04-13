@@ -1,1 +1,1 @@
-export { TemplateLocaleProvider } from "./provider";
+export { LocaleProvider } from "./provider";
