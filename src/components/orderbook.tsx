@@ -4,12 +4,18 @@
  * by display value (same precision as UI) so only rows whose visible value changed flash.
  */
 import React, { useEffect, useMemo, useRef, type ComponentType } from "react";
-import { useOrderBookContext } from "@orderly.network/trading";
-import "@orderly.network/trading";
 import { getPrecisionByNumber } from "@orderly.network/utils";
 
 const FLASH_ODD_CLASS = "orderbook-row-flash--odd";
 const FLASH_EVEN_CLASS = "orderbook-row-flash--even";
+
+type BasicSymbolInfo = {
+  base_dp: number;
+  quote_dp: number;
+  base_tick: number;
+  base: string;
+  quote: string;
+};
 
 export type OrderBookShimmerPluginOptions = {
   /**
@@ -27,8 +33,11 @@ export type OrderBookShimmerPluginOptions = {
 /** Delay per row index (ms) so flash cascades in list order instead of all at once */
 const FLASH_DELAY_PER_INDEX_MS = 35;
 
-interface OrderBookListProps {
+/** Props shape for OrderBook.Desktop list components (SDK passes this through interceptors). */
+export interface OrderBookListProps {
   data: number[][] | any[];
+  symbolInfo?: BasicSymbolInfo;
+  depth?: string;
 }
 
 type RowDisplayKey = [number, number];
@@ -77,7 +86,7 @@ export function OrderBookListWrapper<P extends OrderBookListProps>({
   const nextDisplayKeysRef = useRef<Array<RowDisplayKey | undefined>>([]);
   const listRef = useRef<HTMLElement | null>(null);
   const changedIndicesRef = useRef<number[]>([]);
-  const { depth, symbolInfo } = useOrderBookContext();
+  const { depth, symbolInfo } = props;
 
   // Drive styling via CSS vars so we keep the diff/animation logic fast.
   const wrapperStyle = useMemo(
@@ -112,7 +121,11 @@ export function OrderBookListWrapper<P extends OrderBookListProps>({
       sizeDp >= 0 &&
       priceDp <= maxDp &&
       sizeDp <= maxDp;
-    if (!canRound) return { priceFactor: undefined as number | undefined, sizeFactor: undefined as number | undefined };
+    if (!canRound)
+      return {
+        priceFactor: undefined as number | undefined,
+        sizeFactor: undefined as number | undefined,
+      };
     return {
       priceFactor: 10 ** priceDp,
       sizeFactor: 10 ** sizeDp,
@@ -187,7 +200,11 @@ export function OrderBookListWrapper<P extends OrderBookListProps>({
 
       if (prevHadData) {
         const prevKey = prevDisplayKeys[i];
-        if (!prevKey || prevKey[0] !== currPriceKey || prevKey[1] !== currSizeKey) {
+        if (
+          !prevKey ||
+          prevKey[0] !== currPriceKey ||
+          prevKey[1] !== currSizeKey
+        ) {
           changedIndices.push(i);
         }
       }
@@ -205,7 +222,9 @@ export function OrderBookListWrapper<P extends OrderBookListProps>({
       listRef.current = null;
     }
     if (!listRef.current && wrapper) {
-      listRef.current = wrapper.querySelector(".oui-order-book-list") as HTMLElement | null;
+      listRef.current = wrapper.querySelector(
+        ".oui-order-book-list",
+      ) as HTMLElement | null;
     }
     const list = listRef.current;
     if (!list) return;

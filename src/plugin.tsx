@@ -1,7 +1,11 @@
+import type { ComponentType } from "react";
 import { createInterceptor } from "@orderly.network/ui";
 import { OrderlySDK } from "@orderly.network/ui";
-import { OrderBookListWrapper } from "./components/orderbook";
-import type { OrderBookShimmerPluginOptions } from "./components/orderbook";
+import {
+  OrderBookListWrapper,
+  type OrderBookListProps,
+  type OrderBookShimmerPluginOptions,
+} from "./components/orderbook";
 
 const DEFAULT_PLUGIN_OPTIONS: OrderBookShimmerPluginOptions = {
   animationHighlightColor: "rgba(255, 200, 100, 0.25)",
@@ -28,15 +32,20 @@ export function registerPlugin(
       interceptors: [
         createInterceptor("OrderBook.Desktop.Asks", (Original, props, _api) => (
           <OrderBookListWrapper
-            Original={Original}
-            props={props}
+            // SDK interceptors use Record<string, unknown>; runtime props match orderbook list shape.
+            Original={
+              Original as unknown as ComponentType<OrderBookListProps>
+            }
+            props={props as unknown as OrderBookListProps}
             pluginOptions={pluginOptions}
           />
         )),
         createInterceptor("OrderBook.Desktop.Bids", (Original, props, _api) => (
           <OrderBookListWrapper
-            Original={Original}
-            props={props}
+            Original={
+              Original as unknown as ComponentType<OrderBookListProps>
+            }
+            props={props as unknown as OrderBookListProps}
             pluginOptions={pluginOptions}
           />
         )),
