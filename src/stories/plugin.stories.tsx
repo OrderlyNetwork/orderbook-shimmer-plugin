@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { registerPlugin } from "../index";
 
-import { OrderBookWidget, TradingPage } from "@orderly.network/trading";
+import { OrderBookWidget, TradingPage } from "@orderly.network/trading-next";
 import { Box, OrderlyPluginProvider } from "@orderly.network/ui";
 import { useEffect, useState } from "react";
 import { tradingPageConfig } from "./orderlyConfig";

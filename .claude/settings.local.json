@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm list *)",
+      "Bash(find /Volumes/HIKSEMI/orderly -name \"package.json\" -exec grep -l \"storybook-config\\\\|storybook-shared\\\\|ts-config\" {} \\\\;)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(pnpm install *)",
+      "Read(//Volumes/HIKSEMI/orderly/plugin-storybook/**)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm storybook *)"
+    ]
+  }
+}

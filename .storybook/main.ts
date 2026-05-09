@@ -1,10 +1,2 @@
-import type { StorybookConfig } from '@storybook/react-vite';
-
-const config: StorybookConfig = {
-  "stories": [
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-  ],
-  "addons": [],
-  "framework": "@storybook/react-vite"
-};
-export default config;
+import { createMainConfig } from "@orderly.network/plugin-storybook";
+export default createMainConfig();
