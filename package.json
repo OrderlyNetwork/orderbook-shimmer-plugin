@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@orderly.network/core": "3.0.4-alpha.1",
-    "@orderly.network/plugin-storybook": "file:../plugin-storybook",
+    "@orderly.network/plugin-storybook": "^0.0.1",
     "@orderly.network/react-app": "3.0.4-alpha.1",
     "@orderly.network/trading-next": "3.0.4-alpha.1",
     "@orderly.network/ts-config": "^0.0.2",
