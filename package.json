@@ -22,23 +22,23 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "@orderly.network/hooks": "3.0.4-alpha.1",
-    "@orderly.network/i18n": "3.0.4-alpha.1",
-    "@orderly.network/plugin-core": "3.0.4-alpha.1",
-    "@orderly.network/trading-next": "3.0.4-alpha.1",
-    "@orderly.network/types": "3.0.4-alpha.1",
-    "@orderly.network/ui": "3.0.4-alpha.1",
-    "@orderly.network/utils": "3.0.4-alpha.1",
+    "@orderly.network/hooks": "3.0.4-alpha.2",
+    "@orderly.network/i18n": "3.0.4-alpha.2",
+    "@orderly.network/plugin-core": "3.0.4-alpha.2",
+    "@orderly.network/trading-next": "3.0.4-alpha.2",
+    "@orderly.network/types": "3.0.4-alpha.2",
+    "@orderly.network/ui": "3.0.4-alpha.2",
+    "@orderly.network/utils": "3.0.4-alpha.2",
     "react": ">=18",
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "@orderly.network/core": "3.0.4-alpha.1",
+    "@orderly.network/core": "3.0.4-alpha.2",
     "@orderly.network/plugin-storybook": "^0.0.1",
-    "@orderly.network/react-app": "3.0.4-alpha.1",
-    "@orderly.network/trading-next": "3.0.4-alpha.1",
+    "@orderly.network/react-app": "3.0.4-alpha.2",
+    "@orderly.network/trading": "3.0.4-alpha.2",
     "@orderly.network/ts-config": "^0.0.2",
-    "@orderly.network/ui": "3.0.4-alpha.1",
+    "@orderly.network/ui": "3.0.4-alpha.2",
     "@storybook/react": "^10.3.0",
     "@storybook/react-vite": "^10.3.0",
     "@storybook/react-webpack5": "^10.3.0",
@@ -58,8 +58,8 @@
     "vite-plugin-node-polyfills": "^0.25.0"
   },
   "dependencies": {
-    "@orderly.network/ui-scaffold": "3.0.4-alpha.1",
-    "@orderly.network/wallet-connector-privy": "3.0.4-alpha.1",
+    "@orderly.network/ui-scaffold": "3.0.4-alpha.2",
+    "@orderly.network/wallet-connector-privy": "3.0.4-alpha.2",
     "@solana-mobile/wallet-adapter-mobile": "^2.2.6",
     "@solana/wallet-adapter-base": "^0.9.27",
     "@solana/wallet-adapter-wallets": "^0.19.37"
