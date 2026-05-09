@@ -1,5 +1,3 @@
-export const TemplateLocales = {
+export const LocaleMessages = {
   "Common.ok": "OK",
 };
-
-export type TTemplateLocales = typeof TemplateLocales;
