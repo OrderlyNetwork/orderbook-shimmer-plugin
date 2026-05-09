@@ -43,8 +43,8 @@ importers:
         specifier: 3.0.4-alpha.1
         version: 3.0.4-alpha.1(bufferutil@4.1.0)(encoding@0.1.13)(typescript@5.9.3)(utf-8-validate@6.0.6)
       '@orderly.network/plugin-storybook':
-        specifier: file:../plugin-storybook
-        version: file:../plugin-storybook(53e548735bdc91370943510bc0e9bce1)
+        specifier: ^0.0.1
+        version: 0.0.1(53e548735bdc91370943510bc0e9bce1)
       '@orderly.network/react-app':
         specifier: 3.0.4-alpha.1
         version: 3.0.4-alpha.1(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(bufferutil@4.1.0)(embla-carousel@8.6.0)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(got@11.8.6)(react-dom@18.3.1(react@18.3.1))(react-native@0.84.1(@babel/core@7.29.0)(@types/react@18.3.28)(bufferutil@4.1.0)(react@18.3.1)(utf-8-validate@6.0.6))(react@18.3.1)(tailwindcss@3.4.19(yaml@2.8.2))(typescript@5.9.3)(utf-8-validate@6.0.6)
@@ -1181,13 +1181,13 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@orderly.network/plugin-storybook@file:../plugin-storybook':
-    resolution: {directory: ../plugin-storybook, type: directory}
+  '@orderly.network/plugin-storybook@0.0.1':
+    resolution: {integrity: sha512-xqp15/WGm6T9BYYkmVlDRBeFACKBY63lq5H45UPPpuZ9X7lG+aHjdYJI7zMmiXmZ4GPjPAPm6ybUZU5zeEAOSg==}
     peerDependencies:
-      '@orderly.network/core': 3.0.0-beta.0
-      '@orderly.network/hooks': 3.0.0-beta.0
-      '@orderly.network/react-app': 3.0.0-beta.0
-      '@orderly.network/ui': 3.0.0-beta.0
+      '@orderly.network/core': ^3.0.0-beta.0
+      '@orderly.network/hooks': ^3.0.0-beta.0
+      '@orderly.network/react-app': ^3.0.0-beta.0
+      '@orderly.network/ui': ^3.0.0-beta.0
       '@orderly.network/wallet-connector-privy': '*'
       '@solana-mobile/wallet-adapter-mobile': '*'
       '@solana/wallet-adapter-base': '*'
@@ -10494,7 +10494,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@orderly.network/plugin-storybook@file:../plugin-storybook(53e548735bdc91370943510bc0e9bce1)':
+  '@orderly.network/plugin-storybook@0.0.1(53e548735bdc91370943510bc0e9bce1)':
     dependencies:
       '@orderly.network/core': 3.0.4-alpha.1(bufferutil@4.1.0)(encoding@0.1.13)(typescript@5.9.3)(utf-8-validate@6.0.6)
       '@orderly.network/hooks': 3.0.4-alpha.1(@types/react@18.3.28)(bufferutil@4.1.0)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(got@11.8.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(utf-8-validate@6.0.6)
