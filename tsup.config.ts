@@ -13,13 +13,7 @@ export default defineConfig((options) => ({
   clean: !options.watch,
   dts: true,
   // Externalize runtime deps so tsup doesn't bundle large Orderly packages.
-  external: [
-    "react",
-    "react-dom",
-    "@orderly.network/ui",
-    "@orderly.network/trading",
-    "@orderly.network/utils",
-  ],
+  external: ["react", "react-dom", /\.css$/],
   esbuildOptions(esOptions, context) {
     if (!options.watch) {
       esOptions.drop = ["console", "debugger"];
