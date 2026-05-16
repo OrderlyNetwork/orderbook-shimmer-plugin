@@ -1,6 +1,6 @@
 {
   "name": "@orderly.network/orderbook-shimmer-plugin",
-  "version": "0.0.4-alpha.0",
+  "version": "0.0.4",
   "description": "Template for creating a new Orderly.network package",
   "license": "MIT",
   "main": "dist/index.js",
