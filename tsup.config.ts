@@ -7,7 +7,7 @@ export default defineConfig((options) => ({
   // Library packages: keep output smaller by avoiding sourcemaps and bundling
   // large peer runtime deps.
   minify: !options.watch,
-  splitting: false,
+  splitting: true,
   sourcemap: false,
   treeshake: true,
   clean: !options.watch,
