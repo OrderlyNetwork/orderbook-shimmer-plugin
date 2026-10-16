@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "animationHighlightColor": {
+      "type": "string",
+      "description": "Row flash \"from\" color during animation.\nShould be a valid CSS color string (e.g. `rgba(...)`, `#rrggbb`)."
+    },
+    "stripedRowBackgroundColor": {
+      "type": "string",
+      "description": "Even row base background color + flash \"to\" color for even rows.\nShould be a valid CSS color string (e.g. `rgba(...)`, `rgb(...)`)."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

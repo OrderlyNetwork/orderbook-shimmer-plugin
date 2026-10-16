@@ -1,6 +1,6 @@
 {
   "name": "@orderly.network/orderbook-shimmer-plugin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Template for creating a new Orderly.network package",
   "license": "MIT",
   "main": "dist/index.js",
@@ -9,7 +9,8 @@
   "files": [
     "dist",
     "package.json",
-    "README.md"
+    "README.md",
+    "configSchema.json"
   ],
   "publishConfig": {
     "access": "public"
@@ -22,13 +23,13 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "@orderly.network/hooks": "3.0.4-alpha.2",
-    "@orderly.network/i18n": "3.0.4-alpha.2",
-    "@orderly.network/plugin-core": "3.0.4-alpha.2",
-    "@orderly.network/trading-next": "3.0.4-alpha.2",
-    "@orderly.network/types": "3.0.4-alpha.2",
-    "@orderly.network/ui": "3.0.4-alpha.2",
-    "@orderly.network/utils": "3.0.4-alpha.2",
+    "@orderly.network/hooks": ">=3.0.0-beta.1",
+    "@orderly.network/i18n": ">=3.0.0-beta.1",
+    "@orderly.network/plugin-core": ">=3.0.0-beta.1",
+    "@orderly.network/trading-next": ">=3.0.0-beta.1",
+    "@orderly.network/types": ">=3.0.0-beta.1",
+    "@orderly.network/ui": ">=3.0.0-beta.1",
+    "@orderly.network/utils": ">=3.0.0-beta.1",
     "react": ">=18",
     "react-dom": ">=18"
   },
